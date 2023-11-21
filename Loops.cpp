@@ -61,5 +61,22 @@ int main()
 
         std::cout << "Fibonacci sequence element: " << element2 << std::endl << std::endl;
     }
+
+    // ---------- TASK 3 ----------
+    std::cout << "---------- TASK 3 ----------" << std::endl << std::endl;
+
+    unsigned int factorialNumber;
+
+    std::cout << "Enter number: ";
+    std::cin >> factorialNumber;
+    std::cout << std::endl;
+
+    int factorial = 1;
+
+    for (int i = 1; i <= factorialNumber; i++) {
+        factorial = factorial * i;
+    }
+
+    std::cout << "Factorial of the entered number: " << factorial << std::endl << std::endl;
 }
 
