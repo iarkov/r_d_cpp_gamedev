@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctype.h>
 
 int main()
 {
@@ -185,5 +186,29 @@ int main()
         }
     }
     std::cout << std::endl << std::endl;
+
+    // ---------- TASK 5 ----------
+    std::cout << "---------- TASK 5 ----------" << std::endl << std::endl;
+
+    char c;
+    int sum = 0;
+
+    while (true) {
+        std::cout << "Enter character: ";
+        std::cin >> c;
+        if (c == '.') {
+            break;
+        }
+        else if (isalpha(c) && islower(c)) {
+            std::cout << "Entered letter in uppercase: " << static_cast<char>(toupper(c)) << std::endl;
+        }
+        else if (isdigit(c)) {
+            sum = sum + c - '0';
+            std::cout << "The sum of entered numbers: " << sum << std::endl;
+        }
+        else {
+            std::cout << "Entered symbol cannot be processed." << std::endl;
+        }
+    }
 }
 
