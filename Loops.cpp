@@ -78,5 +78,112 @@ int main()
     }
 
     std::cout << "Factorial of the entered number: " << factorial << std::endl << std::endl;
+
+    // ---------- TASK 4 ----------
+    std::cout << "---------- TASK 4 ----------" << std::endl << std::endl;
+
+    // ---------- A ----------
+    unsigned int heightA;
+    unsigned int widthA;
+
+    std::cout << "Enter height of figure A: "; 
+    std::cin >> heightA;
+    std::cout << "Enter width of figure A: ";
+    std::cin >> widthA;
+    std::cout << std::endl;
+
+    for (int i = heightA; i > 0; i--) {
+        for (int j = widthA; j > 0; j--) {
+            std::cout << '*';
+        }
+        std::cout << std::endl;
+        --widthA;
+        if (widthA == 0) {
+            break;
+        }
+    }
+    std::cout << std::endl << std::endl;
+
+    // ---------- B ----------
+    int heightB;
+    int widthB;
+
+    std::cout << "Enter height of figure B: ";
+    std::cin >> heightB;
+    std::cout << "Enter width of figure B: ";
+    std::cin >> widthB;
+    std::cout << std::endl;
+
+    for (int i = 0; i < heightB; i++) {
+        
+        if (heightB - i > widthB) {
+            continue;
+        }
+        
+        for (int j = 0; j <= (widthB - (heightB - i)); j++) {
+            std::cout << '*';
+        }
+
+        if (i < heightB - 1) {
+            std::cout << std::endl;
+        }
+    }
+    std::cout << std::endl << std::endl;
+
+    // ---------- C ----------
+    int heightC;
+    int widthC;
+
+    std::cout << "Enter height of figure C: ";
+    std::cin >> heightC;
+    std::cout << "Enter width of figure C: ";
+    std::cin >> widthC;
+    std::cout << std::endl;
+
+    for (int i = 0; i < heightC; i++) {
+        for (int j = 0; j < i; j++) {
+            std::cout << ' ';
+        }
+
+        for (int w = 0; w < widthC; w++) {
+            std::cout << "*";
+        }
+
+        if (i < heightC - 1) {
+            std::cout << std::endl;
+        }
+    }
+    std::cout << std::endl << std::endl;
+
+    // ---------- D ---------- 
+    int heightD;
+    int widthD;
+
+    std::cout << "Enter height of figure D: ";
+    std::cin >> heightD;
+    std::cout << "Enter width of figure D: ";
+    std::cin >> widthD;
+    std::cout << std::endl;
+
+    if (heightD > widthD) {
+        heightD = widthD;
+    }
+
+    for (int i = 1; i <= heightD; i++) {
+
+        for (int j = 1; j <= (widthB - (heightB - i)); j++) {
+            if ((i - j) % 2 == 0) {
+                std::cout << 1;
+            }
+            else {
+                std::cout << 0;
+            }
+        }
+
+        if (i <= heightB) {
+            std::cout << std::endl;
+        }
+    }
+    std::cout << std::endl << std::endl;
 }
 
