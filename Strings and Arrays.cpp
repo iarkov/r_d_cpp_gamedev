@@ -2,12 +2,13 @@
 #include <cctype>
 
 const int arraySizeTask1 = 10;
-const int arraySizeTask2 = 255;
-const int arraySizeTask3 = 255;
+const int arraySize = 255;
 
 void translateArray(int numbers[], int size);
 void toUpperCase(char str[]);
 bool isPalindrom(const char str[]);
+void parseStringLetters(const char str[], int& vowelsCount, int& consonantsCount);
+//bool isEqual(const char str1[], const char str2[]);
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     // --------------- TASK 2 ---------------
     std::cout << "--------------- TASK 2 ---------------" << std::endl << std::endl;
 
-    char charArrayTask2[arraySizeTask2]{};
+    char charArrayTask2[arraySize]{};
 
     std::cout << "Enter character array: ";
     std::cin >> charArrayTask2;
@@ -38,7 +39,7 @@ int main()
     // --------------- TASK 3 ---------------
     std::cout << "--------------- TASK 3 ---------------" << std::endl << std::endl;
 
-    char stringTask3[arraySizeTask3]{};
+    char stringTask3[arraySize]{};
     std::cout << "Enter a word: "; std::cin >> stringTask3;
 
     if (isPalindrom(stringTask3)) {
@@ -51,6 +52,23 @@ int main()
 
     // --------------- TASK 4 ---------------
     std::cout << "--------------- TASK 4 ---------------" << std::endl << std::endl;
+
+    int vowelsCount = 0;
+    int consonantsCount = 0;
+
+    char stringTask4[arraySize]{};
+    std::cout << "Enter a word: "; std::cin >> stringTask4;
+
+    parseStringLetters(stringTask4, vowelsCount, consonantsCount);
+
+    std::cout << "Character string has " << vowelsCount << " vowels and " << consonantsCount << " consonants.";
+
+    std::cout << std::endl << std::endl;
+
+    // --------------- TASK 5 ---------------
+    std::cout << "--------------- TASK 5 ---------------" << std::endl << std::endl;
+
+
 }
 
 void translateArray(int numbers[], int size) {
@@ -78,7 +96,7 @@ void toUpperCase(char str[]) {
 bool isPalindrom(const char str[]) {
     int wordLength = -1; 
     for (int j = 0; j <= strlen(str); j++) {
-        if (str[j] == ' ') {
+        if (str[j] == ' ' || str[j] == '\0') {
             break;
         }
         else {
@@ -86,11 +104,39 @@ bool isPalindrom(const char str[]) {
         }
     }
     
-    for (int i = 0; i <= wordLength - 1 - i; i++) {
-        if (str[i] != str[wordLength - 1 - i]) {
+    for (int i = 0; i <= wordLength - i; i++) {
+        if (str[i] != str[wordLength - i]) {
             return false;
             break;
         }
     }
     return true;
 }
+
+void parseStringLetters(const char str[], int& vowelsCount, int& consonantsCount) {
+    int i = 0;
+
+    while (str[i] != ' ' && str[i] != '\0') {
+        bool isAlpha = std::isalpha(str[i]);
+        bool isVowel = std::tolower(str[i]) == 'a' ||
+            std::tolower(str[i]) == 'e' ||
+            std::tolower(str[i]) == 'o' ||
+            std::tolower(str[i]) == 'u' ||
+            std::tolower(str[i]) == 'i';
+
+        if (isAlpha && isVowel) {
+            vowelsCount++;
+        }
+        else if (isAlpha && !isVowel){
+            consonantsCount++;
+        }
+
+        i++;
+    }
+}
+
+//bool isEqual(const char str1[], const char str2[]) {
+//    if (strlen(str1) == strlen(str2)) {
+//        
+//    }
+//}
