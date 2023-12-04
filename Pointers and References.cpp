@@ -1,10 +1,5 @@
 #include <iostream>
-
-void swap(int& a, int& b);
-
-void swap(int* a, int* b);
-
-bool calculateSum(const double* arr, int arrSize, double& sum);
+#include "functionsHW10.h"
 
 int main()
 {
@@ -35,40 +30,26 @@ int main()
     std::cout << "Size of the array is greater then " << static_cast<int>(!tru);
     std::cout << " and sum of its elements equals to " << sumTrue << std::endl << std::endl;
 
-    double arrFalse[100];
+    double arrFalse[100]{};
     double sumFalse = 0.;
-
-    bool fal = calculateSum(arrFalse, -99, sumFalse);
+    
+    bool fal = calculateSum(arrFalse, 0, sumFalse);
 
     std::cout << "Size of the array is less than or equals to " << static_cast<int>(fal);
     std::cout << " and sum of its elements equals to " << sumFalse << std::endl << std::endl;
-}
 
-void swap(int* a, int* b) {
-    int temp = *b;
-    *b = *a;
-    *a = temp;
+    // ---------------- TASK 3 ----------------
+    std::cout << "---------------- TASK 3 ----------------" << std::endl << std::endl;
 
-    std::cout << "Values swapped" << std::endl;
-}
-
-void swap(int& a, int& b) {
-    int temp = b;
-    b = a;
-    a = temp;
-
-    std::cout << "Values swapped" << std::endl;
-}
-
-bool calculateSum(const double* arr, int arrSize, double& sum) {
-    if (arrSize <= 0) {
-        return false;
+    int arrFind[]{ 1, 2, -2 }; 
+    bool found = find(arrFind, sizeof(arrFind) / sizeof(int), 1);
+    
+    if (found) {
+        std::cout << "Element found";
     }
     else {
-        for (int i = 0; i < arrSize; i++) {
-            sum += arr[i];
-        }
-
-        return true;
+        std::cout << "Element not found";
     }
+
+    std::cout << std::endl;
 }
