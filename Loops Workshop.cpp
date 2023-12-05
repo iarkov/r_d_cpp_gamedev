@@ -34,7 +34,8 @@ int main()
             championScore = (championScore > score || championScore == 0) ? score : championScore;
             score = 0;
             std::cout << "Your BEST score is " << championScore << " attemps!" << std::endl;
-            std::cout << "Now let's guess anouther number!" << std::endl << std::endl;
+            std::cout << "Now let's guess anouther number!" << std::endl;
+            std::cout << "Reminder: to quit the game enter \"-1\" or blank value" << std::endl << std::endl;
 
             generatedNum = std::rand() % (generatingRange + 1);
         }
