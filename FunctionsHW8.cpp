@@ -1,4 +1,5 @@
 #include "FunctionsHW8.h"
+#include <iostream>
 
 int factorialRec(unsigned int count) {
 	return (count == 0) ? 1 : count * factorialRec(count - 1);
@@ -11,14 +12,13 @@ int factorialLoop(unsigned int count) {
 	if (count == 0) {
 		return factorial;
 	}
-	else {
-		while (count > 0) {
-			factorial = factorial * count;
-			count--;
-		}
 
-		return factorial;
+	while (count > 0) {
+		factorial = factorial * count;
+		count--;
 	}
+
+	return factorial;
 }
 
 void countBySign(int n) {
@@ -52,8 +52,8 @@ void printNaturalNumbersA(int count) {
 		std::cout << count << " ";
 		count--;
 	}
-	std::cout << std::endl;
 }
+
 void printNaturalNumbersB(int count) {
 	int i = 1;
 
@@ -61,12 +61,11 @@ void printNaturalNumbersB(int count) {
 		std::cout << i << " ";
 		i++;
 	}
-
-	std::cout << std::endl;
 }
+
 void printNaturalNumbersC(int count) {
 	if (count == 1) {
-		std::cout << count << std::endl;
+		std::cout << count <<  " ";
 	}
 	else {
 		std::cout << count << " ";
@@ -74,16 +73,12 @@ void printNaturalNumbersC(int count) {
 	}
 }
 
-void helpFunctionD(int count, int i = 1) {
-	if (i == count) {
-		std::cout << i << std::endl;
+void printNaturalNumbersD(int count) {
+	if (count == 1) {
+		std::cout << count << " ";
 	}
 	else {
-		std::cout << i << " ";
-		helpFunctionD(count, i + 1);
+		printNaturalNumbersD(count - 1);
+		std::cout << count << " ";
 	}
-}
-
-void printNaturalNumbersD(int count) {
-	helpFunctionD(count);
 }

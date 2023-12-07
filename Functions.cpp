@@ -8,7 +8,7 @@ int main()
 	std::cout << "-------------- TASK 1 --------------" << std::endl << std::endl;
 
 	int numberCBS = 0;
-	std::cout << "Enter number for function coutnBySigh(): "; 
+	std::cout << "Enter number for function coutnBySign(): "; 
 	std::cin >> numberCBS;
 	countBySign(numberCBS);
 
@@ -38,11 +38,11 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << "First " << naturalNumbers << " natural numbers in descending order using loops: " << std::endl;
-	printNaturalNumbersA(naturalNumbers); std::cout << std::endl;
+	printNaturalNumbersA(naturalNumbers); std::cout << std::endl << std::endl;
 	std::cout << "First " << naturalNumbers << " natural numbers in ascending order using loops: " << std::endl;
-	printNaturalNumbersB(naturalNumbers); std::cout << std::endl;
+	printNaturalNumbersB(naturalNumbers); std::cout << std::endl << std::endl;
 	std::cout << "First " << naturalNumbers << " natural numbers in descending order using recursion: " << std::endl;
-	printNaturalNumbersC(naturalNumbers); std::cout << std::endl;
+	printNaturalNumbersC(naturalNumbers); std::cout << std::endl << std::endl;
 	std::cout << "First " << naturalNumbers << " natural numbers in ascending order using recursion: " << std::endl;
-	printNaturalNumbersD(naturalNumbers); std::cout << std::endl;
+	printNaturalNumbersD(naturalNumbers); std::cout << std::endl << std::endl;
 }
