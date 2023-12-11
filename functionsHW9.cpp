@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cctype>
 #include "functionsHW9.h"
 
 void translateArray(int numbers[], int size) {
