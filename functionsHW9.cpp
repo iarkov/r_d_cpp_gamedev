@@ -1,12 +1,14 @@
+#include <iostream>
+#include <cctype>
 #include "functionsHW9.h"
 
 void translateArray(int numbers[], int size) {
     for (int i = 0; i < size; i++) {
         if (numbers[i] > 0) {
-            std::cout << numbers[i] * 2 << " ";
+            numbers[i] = numbers[i] * 2;
         }
         else {
-            std::cout << 0 << " ";
+            numbers[i] = 0;
         }
     }
 }
@@ -23,7 +25,7 @@ void toUpperCase(char str[]) {
 }
 
 bool isPalindrom(const char str[]) {
-    int wordLength = -1;
+    int wordLength = 0;
     for (int j = 0; j <= strlen(str); j++) {
         if (str[j] == ' ' || str[j] == '\0') {
             break;
@@ -33,8 +35,12 @@ bool isPalindrom(const char str[]) {
         }
     }
 
-    for (int i = 0; i <= wordLength - i; i++) {
-        if (str[i] != str[wordLength - i]) {
+    if (!wordLength) {
+        return false;
+    }
+
+    for (int i = 0; i <= wordLength - 1 - i; i++) {
+        if (str[i] != str[wordLength - 1 - i]) {
             return false;
             break;
         }
@@ -53,7 +59,7 @@ void parseStringLetters(const char str[], int& vowelsCount, int& consonantsCount
             std::tolower(str[i]) == 'u' ||
             std::tolower(str[i]) == 'i';
 
-        if (isAlpha && isVowel) {
+        if (isVowel) {
             vowelsCount++;
         }
         else if (isAlpha && !isVowel) {
@@ -65,16 +71,17 @@ void parseStringLetters(const char str[], int& vowelsCount, int& consonantsCount
 }
 
 bool isEqual(const char str1[], const char str2[]) {
-    if (strlen(str1) == strlen(str2)) {
+    if (strlen(str1) != strlen(str2)) {
+        return false;
+    }
+    else {
         int i = 0;
         while (str1[i] != '\0') {
             if (str1[i] != str2[i]) {
                 return false;
             }
-            return true;
+            i++;
         }
-    }
-    else {
-        return false;
+        return true;
     }
 }

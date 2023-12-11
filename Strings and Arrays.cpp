@@ -3,7 +3,7 @@
 #include "functionsHW9.h"
 
 int main()
-{
+{   
     // --------------- TASK 1 ---------------
     std::cout << "--------------- TASK 1 ---------------" << std::endl << std::endl;
     int numberArray[arraySizeTask1]{0};
@@ -14,6 +14,10 @@ int main()
     }
 
     translateArray(numberArray, arraySizeTask1);
+
+    for (int i = 0; i < arraySizeTask1; i++) {
+        std::cout << numberArray[i] << " ";
+    }
     std::cout << std::endl << std::endl;
 
     // --------------- TASK 2 ---------------
@@ -27,13 +31,13 @@ int main()
     std::cout << "Character array in upper case: " << std::endl;
     toUpperCase(charArrayTask2);
     std::cout << std::endl << std::endl;
-
+    
     // --------------- TASK 3 ---------------
     std::cout << "--------------- TASK 3 ---------------" << std::endl << std::endl;
 
-    char stringTask3[arraySize]{};
+    char stringTask3[arraySize];
     std::cout << "Enter a word: "; std::cin >> stringTask3;
-
+    
     if (isPalindrom(stringTask3)) {
         std::cout << "The word is a palindrom";
     }
