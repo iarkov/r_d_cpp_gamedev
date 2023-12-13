@@ -4,16 +4,12 @@ void swap(int* a, int* b) {
     int temp = *b;
     *b = *a;
     *a = temp;
-
-    std::cout << "Values swapped" << std::endl;
 }
 
 void swap(int& a, int& b) {
     int temp = b;
     b = a;
     a = temp;
-
-    std::cout << "Values swapped" << std::endl;
 }
 
 bool calculateSum(const double* arr, int arrSize, double& sum) {

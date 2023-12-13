@@ -11,10 +11,12 @@ int main()
 
     std::cout << "X: " << x << ", Y: " << y << std::endl;
 
-    swap(x, y); 
+    swap(x, y);
+    std::cout << "Values swapped" << std::endl;
     std::cout << "X: " << x << ", Y: " << y << std::endl;
 
     swap(&x, &y);
+    std::cout << "Values swapped" << std::endl;
     std::cout << "X: " << x << ", Y: " << y << std::endl;
 
     std::cout << std::endl;
