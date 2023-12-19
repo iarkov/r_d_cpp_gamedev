@@ -116,9 +116,10 @@ void runWordle() {
                 fileWordleOfTheDay << word << ';' << 0;
 
                 fileWordleOfTheDay.close();
+
+                runGame(gm);
             }
         }
-        runGame(gm);
         break;
     }
     case GameMode::randomWordle:
