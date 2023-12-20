@@ -43,29 +43,6 @@ bool isSorted(const int* arr, int size, SortingDirection direction) {
             i++;
         }
         break;
-
-    /*while (i + 1 < size) {
-        switch (direction)
-        {
-        case SortingDirection::ASCENDING:
-            if (arr[i + 1] >= extremElenent) {
-                extremElenent = arr[i + 1];
-            }
-            else {
-                return false;
-            }
-            break;
-        case SortingDirection::DESCENDING:
-            if (arr[i + 1] <= extremElenent) {
-                extremElenent = arr[i + 1];
-            }
-            else {
-                return false;
-            }
-            break;
-        }
-
-        i++;*/
     }
 
     return true;
@@ -93,13 +70,5 @@ void printFlat2(int arr_2d[ROWS][COLUMNS]) {
                 std::cout << arr_2d[ROWS - 1 - i][COLUMNS - 1 - j] << " ";
             }
         }
-        /*for (int j = 0; j < COLUMNS; j++) {
-            if (!(i % 2)) {
-                std::cout << arr_2d[ROWS - 1 - i][j] << " ";
-            }
-            else {
-                std::cout << arr_2d[ROWS - 1 - i][COLUMNS - 1 - j] << " ";
-            }
-        }*/
     }
 }
