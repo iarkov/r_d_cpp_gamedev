@@ -1,5 +1,7 @@
 #include "FunctionsHW12.h"
 
+int arrTranspose[COLUMNS][ROWS];
+
 void bubbleSort(int arr[], int size) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size - 1 - i; j++) {
@@ -16,13 +18,28 @@ void sort(int arr[ROWS][COLUMNS], SortingDirection sd) {
     switch (sd) {
     case SortingDirection::ByRows:
         for (int r = 0; r < ROWS; r++) {
-            quickSortByRows(arr, r, 0, COLUMNS - 1);
+            quickSort(arr[r], 0, COLUMNS - 1);
         }
         break;
     case SortingDirection::ByColumns:
-        for (int c = 0; c < COLUMNS; c++) {
-            quickSortByColumns(arr, c, 0, ROWS - 1);
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLUMNS; c++) {
+                arrTranspose[c][r] = arr[r][c];
+            }
         }
+
+        for (int c = 0; c < COLUMNS; c++) {
+            quickSort(arrTranspose[c], 0, ROWS - 1);
+        }
+
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLUMNS; c++) {
+                arr[r][c] = arrTranspose[c][r];
+            }
+        }
+        /*for (int c = 0; c < COLUMNS; c++) {
+            quickSortByColumns(arr, c, 0, ROWS - 1);
+        }*/
         break;
     }
 }
