@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 const int SUBJECT_NUM = 4;
 const int CLASS_SIZE = 5;
@@ -8,15 +9,16 @@ struct Student {
     int marks[SUBJECT_NUM];
 };
 
-double averageMark(Student student);
+double averageMark(const Student& student);
 
-int compareByAverageMark(const void* a, const void* b);
+//int compareByAverageMark(const void* a, const void* b);
+bool compareByAverageMark(const Student& s1, const Student& s2);
 
 void sortByAverageMark(Student(&students)[CLASS_SIZE]);
 
 Student* getBestStudentPtr(Student(&students)[CLASS_SIZE]);
 
-int studentsNumAbove75(Student(&students)[CLASS_SIZE]);
+int studentsNumberAbovePercentile(Student(&students)[CLASS_SIZE], float percentile);
 
 int main()
 {
@@ -67,12 +69,14 @@ int main()
     // -------------------- TASK 5 --------------------
     std::cout << "-------------------- TASK 5 --------------------" << std::endl << std::endl;
 
-    int numStudentsAbove75 = studentsNumAbove75(course);
+    float percentile = 0.75;
+    int numStudentsAbove75 = studentsNumberAbovePercentile(course, percentile);
 
-    std::cout << numStudentsAbove75 << " students in class have average mark higher then 75 % of the best average mark." << std::endl;
+    std::cout << numStudentsAbove75 << " students in class have an average mark higher then " << static_cast<int>(percentile * 100) 
+        << "% of the best average mark." << std::endl;
 }
 
-double averageMark(Student student) {
+double averageMark(const Student& student) {
     double sum = 0;
     for (int i : student.marks) {
         sum += i;
@@ -81,31 +85,44 @@ double averageMark(Student student) {
     return sum / static_cast<double>((sizeof(student.marks) / sizeof(int)));
 }
 
-int compareByAverageMark(const void* a, const void* b)
+/*int compareByAverageMark(const void* a, const void* b)
 {
     if (averageMark(*(Student*)a) < averageMark(*(Student*)b)) return -1;
     if (averageMark(*(Student*)a) == averageMark(*(Student*)b)) return 0;
     if (averageMark(*(Student*)a) > averageMark(*(Student*)b)) return 1;
+}*/
+
+bool compareByAverageMark(const Student& s1, const Student& s2) {
+    return averageMark(s1) > averageMark(s2);
 }
 
 void sortByAverageMark(Student (&students)[CLASS_SIZE]) {
-    std::qsort(students, CLASS_SIZE, sizeof(Student), compareByAverageMark);
+    //std::qsort(students, CLASS_SIZE, sizeof(Student), compareByAverageMark);
+    //std::sort(students, students + CLASS_SIZE, [](const Student &s1, const Student &s2) {return averageMark(s1) > averageMark(s2);});
+    std::sort(students, students + CLASS_SIZE, compareByAverageMark);
 }
 
 Student* getBestStudentPtr(Student(&students)[CLASS_SIZE]) {
-    sortByAverageMark(students);
-    return &(students[CLASS_SIZE - 1]);
-}
+    Student *bestStudentPtr = students;
 
-int studentsNumAbove75(Student(&students)[CLASS_SIZE]) {
-    int bestAverageMark75 =  averageMark(*(getBestStudentPtr(students))) * 0.75;
-    
-    int sum = 0;
-    for (const Student &student : students) {
-        if (averageMark(student) >= bestAverageMark75) {
-            sum += 1;
+    for (int i = 1; i <= CLASS_SIZE; i++) {
+        if (compareByAverageMark(students[i], *bestStudentPtr)) {
+            bestStudentPtr = students + i;
         }
     }
 
-    return sum;
+    return bestStudentPtr;
+}
+
+int studentsNumberAbovePercentile(Student(&students)[CLASS_SIZE], float percentile = 0.75) {
+    int bestAverageMark75 =  averageMark(*(getBestStudentPtr(students))) * percentile;
+    
+    int count = 0;
+    for (const Student &student : students) {
+        if (averageMark(student) >= bestAverageMark75) {
+            count += 1;
+        }
+    }
+
+    return count;
 }
