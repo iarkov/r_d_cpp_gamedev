@@ -6,7 +6,7 @@
 class Weapon {
 public:
     Weapon();
-    Weapon(std::string name, int damage, int range);
+    Weapon(const std::string& name, int damage, int range);
     void weaponInfo();
 private:
     std::string m_name;

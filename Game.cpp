@@ -7,7 +7,7 @@ Weapon::Weapon() {
     m_range = 1;
 }
 
-Weapon::Weapon(std::string name, int damage, int range) :
+Weapon::Weapon(const std::string& name, int damage, int range) :
     m_name(name), m_damage(damage), m_range(range) {}
 
 void Weapon::weaponInfo() {
@@ -39,6 +39,12 @@ void Player::setWeapon(Weapon* wp) {
 }
 
 bool Team::addPlayer(Player* pl) {
+    for (Player* player : m_players) {
+        if (pl == player) {
+            return false;
+        }
+    }
+
     m_players.push_back(pl);
     pl->setTeam(this);
     m_players_number += 1;
@@ -52,9 +58,12 @@ bool Team::removePlayer(Player* pl) {
             m_players.erase(m_players.begin() + i);
             pl->setTeam(nullptr);
             m_players_number -= 1;
+
+            return true;
         }
     }
-    return true;
+
+    return false;
 }
 
 void Player::setTeam(Team* teamPtr) {
