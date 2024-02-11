@@ -1,7 +1,7 @@
 #include "DynamicIntArray.h"
 #include <iostream>
 
-DynamicIntArray::DynamicIntArray(): m_size(0), m_array(new int[0] {}) {};
+DynamicIntArray::DynamicIntArray(): m_size(0), m_array(nullptr) {};
 
 DynamicIntArray::DynamicIntArray(std::size_t size): m_size(size), m_array(new int[size] {}) {};
 
@@ -65,18 +65,18 @@ void DynamicIntArray::clear() {
 	delete[] m_array;
 
 	m_size = 0; 
-	m_array = new int[m_size] {};
+	m_array = nullptr;
 }
 
 void DynamicIntArray::push_back(int element) {
 	int* tmp = new int[m_size + 1];
 
 	for (int i = 0; i < m_size; i++) {
-		std::cout << m_array[i] << " ";
 		tmp[i] = m_array[i];
-		std::cout << tmp[i] << " ";
 	}
-	delete[] m_array;
+	if (m_array != nullptr) {
+		delete[] m_array;
+	}
 
 	tmp[m_size] = element;
 	
